@@ -2,11 +2,14 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const connectDB = require("./config/db");
+const articleRoutes = require("./routes/article.routes");
 
 require("dotenv").config();
 
 const app = express();
 app.use(express.json());
+
+app.use("/api/articles", articleRoutes);
 
 app.get("/", (req, res) => {
   res.send("BeyondChats API Running");
