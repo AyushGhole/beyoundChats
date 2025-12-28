@@ -8,31 +8,41 @@ async function getLastPageUrl() {
   const { data } = await axios.get(`${BASE_URL}/blogs/`);
   const $ = cheerio.load(data);
 
-  let lastPage = null;
+  const pageLinks = [];
 
-  $(".page-numbers").each((_, el) => {
-    const text = $(el).text();
-    if (!isNaN(text)) lastPage = text;
-  });
-
-  if (!lastPage) throw new Error("Pagination not found");
-
-  return `${BASE_URL}/blogs/page/${lastPage}/`;
-}
-
-async function getArticleLinks(pageUrl) {
-  const { data } = await axios.get(pageUrl);
-  const $ = cheerio.load(data);
-
-  const links = [];
-
-  $("article h2 a").each((_, el) => {
-    if (links.length < 5) {
-      links.push($(el).attr("href"));
+  $("a.page-numbers").each((_, el) => {
+    const href = $(el).attr("href");
+    if (href && href.includes("/blogs/page/")) {
+      pageLinks.push(href);
     }
   });
 
-  return links;
+  if (pageLinks.length === 0) {
+    throw new Error("Pagination links not found");
+  }
+
+  return pageLinks[pageLinks.length - 1];
+}
+
+function getArticleLinksFromPage(html) {
+  const $ = cheerio.load(html);
+  const links = new Set();
+
+  $("a").each((_, el) => {
+    const href = $(el).attr("href");
+
+    if (
+      href &&
+      href.startsWith("https://beyondchats.com/blogs/") &&
+      !href.includes("/tag/") &&
+      !href.includes("/page/") &&
+      !href.includes("/category/")
+    ) {
+      links.add(href);
+    }
+  });
+
+  return Array.from(links);
 }
 
 async function scrapeArticle(url) {
@@ -41,16 +51,28 @@ async function scrapeArticle(url) {
 
   const title = $("h1").first().text().trim();
 
-  const content = $(".entry-content p")
-    .map((_, el) => $(el).text())
-    .get()
-    .join("\n\n");
+  if (!title || title.length < 10) {
+    throw new Error("Invalid article page");
+  }
+
+  let content = "";
+
+  $("article p").each((_, el) => {
+    const text = $(el).text().trim();
+    if (text.length > 40) {
+      content += text + "\n\n";
+    }
+  });
+
+  if (!content) {
+    throw new Error("Article content not found");
+  }
 
   return { title, content, url };
 }
 
 module.exports = {
   getLastPageUrl,
-  getArticleLinks,
+  getArticleLinksFromPage,
   scrapeArticle,
 };

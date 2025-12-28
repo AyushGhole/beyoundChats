@@ -5,12 +5,10 @@ const articleSchema = new mongoose.Schema(
   {
     title: {
       type: String,
-      required: true,
       trim: true,
     },
     content: {
       type: String,
-      required: true,
     },
     url: {
       type: String,
@@ -34,4 +32,4 @@ const articleSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Article", articleSchema);
+module.exports = mongoose.model("beyondArticle", articleSchema);
