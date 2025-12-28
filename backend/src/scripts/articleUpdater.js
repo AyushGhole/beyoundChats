@@ -1,6 +1,9 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
+const puppeteer = require("puppeteer");
+
 const API_BASE = "http://localhost:5000/api/fetch/articles";
+const API_UPDATE = "http://localhost:5000/api/update";
 
 async function fetchArticles() {
   const res = await axios.get(API_BASE);
@@ -91,42 +94,132 @@ async function googleSearch(query) {
 })();
 
 async function scrapeCompetitorArticle(url) {
-  const { data } = await axios.get(url, {
-    headers: { "User-Agent": "Mozilla/5.0" },
-  });
+  const browser = await puppeteer.launch({ headless: true });
+  const page = await browser.newPage();
 
-  const $ = cheerio.load(data);
-  let content = "";
-
-  $("p").each((_, el) => {
-    const text = $(el).text().trim();
-    if (text.length > 50) content += text + "\n";
-  });
-
-  return content.slice(0, 3000);
-}
-
-(async () => {
   try {
-    const articles = await fetchArticles();
+    await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60000 });
+    await page.setViewport({ width: 1200, height: 800 });
 
-    console.log("\nSearching competitors for:", articles[0].title);
-    const competitors = await googleSearch(articles[0].title);
+    // Wait for JS content to load (works in all Puppeteer versions)
+    await new Promise((r) => setTimeout(r, 3000));
 
-    console.log("Competitor URLs:", competitors);
+    // Try multiple selectors based on site
+    let selectors = [];
 
-    if (!competitors.length) {
-      console.log("No competitor articles found");
-      return;
+    if (url.includes("npr.org")) {
+      selectors = [
+        "div.article__story-text p",
+        "div[data-testid='story-text'] p",
+      ];
+    } else if (url.includes("nih.gov")) {
+      selectors = ["div.node__content p", "div.article__body p"];
+    } else {
+      selectors = ["p"];
     }
 
-    const competitorContent = await scrapeCompetitorArticle(competitors[0]);
+    let content = "";
 
-    console.log(
-      "\nCompetitor content preview:\n",
-      competitorContent.slice(0, 500)
+    for (let sel of selectors) {
+      const paragraphs = await page.$$eval(sel, (ps) =>
+        ps.map((p) => p.innerText.trim()).filter((t) => t.length > 50)
+      );
+      if (paragraphs.length > 0) {
+        content = paragraphs.join("\n");
+        break; // stop once we found content
+      }
+    }
+
+    if (!content) {
+      // fallback: take first long <p> elements
+      const paragraphs = await page.$$eval("p", (ps) =>
+        ps.map((p) => p.innerText.trim()).filter((t) => t.length > 50)
+      );
+      content = paragraphs.slice(0, 20).join("\n");
+    }
+
+    return (
+      content.slice(0, 3000) || "No content could be scraped from this URL."
     );
   } catch (err) {
-    console.error("Pipeline error:", err.message);
+    console.error("Error scraping competitor:", url, err.message);
+    return "Error scraping content.";
+  } finally {
+    await browser.close();
+  }
+}
+
+// Test
+(async () => {
+  const url =
+    "https://www.npr.org/sections/shots-health-news/2024/12/30/nx-s1-5239924/bird-flu-q-a-what-to-know-to-help-protect-yourself-and-your-pets";
+  const articleContent = await scrapeCompetitorArticle(url);
+  console.log("Preview:", articleContent.slice(0, 500));
+})();
+
+// ------------------ CALL LLM API ------------------
+async function rewriteArticle(originalArticle, competitorContents, references) {
+  const prompt = `
+Original article:
+${originalArticle}
+
+Competitor content:
+${competitorContents.join("\n\n")}
+
+Rewrite the original article to match style, formatting, and key points from competitor content.
+Include the following references at the end:
+${references.join("\n")}
+`;
+
+  // Replace this with your real LLM API call
+  // Example using OpenAI GPT:
+  // const response = await openai.createChatCompletion({ model: "gpt-4", messages: [{role:"user", content: prompt}] });
+  // return response.data.choices[0].message.content;
+
+  // For now, mocking LLM response
+  return `REWRITTEN ARTICLE:\n\n${prompt}`;
+}
+
+// ------------------ PUBLISH VIA CRUD API ------------------
+async function publishArticle(article) {
+  if (!article._id) {
+    console.error("Cannot publish: _id missing");
+    return;
+  }
+  try {
+    const res = await axios.put(`${API_UPDATE}/${article._id}`, article);
+    console.log("Article updated:", res.data.title);
+  } catch (err) {
+    console.error("Failed to publish article:", err.message);
+  }
+}
+
+// ------------------ MAIN PIPELINE ------------------
+(async () => {
+  const articles = await fetchArticles();
+
+  for (const a of articles) {
+    console.log("\nProcessing article:", a.title);
+
+    //  Get competitor URLs
+    const competitors = await googleSearch(a.title);
+    console.log("Competitor URLs:", competitors);
+
+    // Scrape competitor content
+    const competitorContents = [];
+    for (const url of competitors) {
+      const content = await scrapeCompetitorArticle(url);
+      competitorContents.push(content);
+    }
+
+    //  Rewrite article via LLM
+    const newArticleContent = await rewriteArticle(
+      a.content,
+      competitorContents,
+      competitors
+    );
+
+    // Publish updated article using CRUD API
+    await publishArticle({ ...a, content: newArticleContent });
   }
 })();
