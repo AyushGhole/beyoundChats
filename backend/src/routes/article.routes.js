@@ -5,10 +5,15 @@ const {
   scrapeAndStoreArticles,
   getArticles,
   deleteAllArticles,
+  deleteArticle,
+  updateArticle,
+  getArticleById,
 } = require("../controllers/article.controller");
 
 router.post("/scrape", scrapeAndStoreArticles);
 router.get("/fetch/articles", getArticles);
-router.delete("/delete/articles", deleteAllArticles);
+router.delete("/delete/:id", deleteArticle);
+router.get("/fetch/:id", getArticleById);
+router.put("/update/:id", updateArticle);
 
 module.exports = router;

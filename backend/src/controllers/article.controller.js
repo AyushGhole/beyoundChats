@@ -140,16 +140,41 @@ exports.getArticles = async (req, res) => {
   }
 };
 
-//Delete Route
-exports.deleteAllArticles = async (req, res) => {
+// GET single article
+exports.getArticleById = async (req, res) => {
   try {
-    const result = await beyondArticle.deleteMany({}); // deletes all documents
-    res.json({
-      message: "All articles deleted successfully",
-      deletedCount: result.deletedCount,
-    });
+    const article = await beyondArticle.findById(req.params.id);
+    if (!article) return res.status(404).json({ message: "Article not found" });
+    res.json(article);
   } catch (err) {
-    console.error("Error deleting articles:", err);
-    res.status(500).json({ error: "Failed to delete articles" });
+    res.status(500).json({ error: err.message });
+  }
+};
+
+//Delete Route
+exports.deleteArticle = async (req, res) => {
+  try {
+    const article = await beyondArticle.findByIdAndDelete(req.params.id);
+    if (!article) return res.status(404).json({ message: "Article not found" });
+    res.json({ message: "Article deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+// UPDATE article
+exports.updateArticle = async (req, res) => {
+  try {
+    const article = await beyondArticle.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      {
+        new: true,
+      }
+    );
+    if (!article) return res.status(404).json({ message: "Article not found" });
+    res.json(article);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 };
