@@ -157,69 +157,61 @@ async function scrapeCompetitorArticle(url) {
   console.log("Preview:", articleContent.slice(0, 500));
 })();
 
-// ------------------ CALL LLM API ------------------
-async function rewriteArticle(originalArticle, competitorContents, references) {
-  const prompt = `
-Original article:
-${originalArticle}
+// ------------------ CONTENT TRANSFORMATION (LLM SUBSTITUTE) ------------------
+function rewriteWithoutAI(original, competitorContents, references) {
+  let rewritten = `
+## Updated Article
 
-Competitor content:
-${competitorContents.join("\n\n")}
+${original}
 
-Rewrite the original article to match style, formatting, and key points from competitor content.
-Include the following references at the end:
-${references.join("\n")}
+---
+
+## Insights from Top Ranking Articles
 `;
 
-  // Replace this with your real LLM API call
-  // Example using OpenAI GPT:
-  // const response = await openai.createChatCompletion({ model: "gpt-4", messages: [{role:"user", content: prompt}] });
-  // return response.data.choices[0].message.content;
+  competitorContents.forEach((c, i) => {
+    rewritten += `\n### Source ${i + 1}\n${c}\n`;
+  });
 
-  // For now, mocking LLM response
-  return `REWRITTEN ARTICLE:\n\n${prompt}`;
+  rewritten += `
+---
+
+## References
+${references.map((r) => `- ${r}`).join("\n")}
+`;
+
+  return rewritten;
 }
 
-// ------------------ PUBLISH VIA CRUD API ------------------
+// ------------------ PUBLISH VIA CRUD ------------------
 async function publishArticle(article) {
-  if (!article._id) {
-    console.error("Cannot publish: _id missing");
-    return;
-  }
-  try {
-    const res = await axios.put(`${API_UPDATE}/${article._id}`, article);
-    console.log("Article updated:", res.data.title);
-  } catch (err) {
-    console.error("Failed to publish article:", err.message);
-  }
+  if (!article._id) return;
+
+  await axios.put(`${API_UPDATE}/${article._id}`, article);
+  console.log("Article updated:", article.title);
 }
 
 // ------------------ MAIN PIPELINE ------------------
 (async () => {
   const articles = await fetchArticles();
 
-  for (const a of articles) {
-    console.log("\nProcessing article:", a.title);
+  for (const article of articles) {
+    console.log("\nProcessing:", article.title);
 
-    //  Get competitor URLs
-    const competitors = await googleSearch(a.title);
-    console.log("Competitor URLs:", competitors);
+    // Search
+    const competitors = await googleSearch(article.title);
+    console.log("Competitors:", competitors);
 
-    // Scrape competitor content
-    const competitorContents = [];
+    // Scrape
+    const contents = [];
     for (const url of competitors) {
-      const content = await scrapeCompetitorArticle(url);
-      competitorContents.push(content);
+      contents.push(await scrapeCompetitorArticle(url));
     }
 
-    //  Rewrite article via LLM
-    const newArticleContent = await rewriteArticle(
-      a.content,
-      competitorContents,
-      competitors
-    );
+    // Rewrite (NO AI)
+    const newContent = rewriteWithoutAI(article.content, contents, competitors);
 
-    // Publish updated article using CRUD API
-    await publishArticle({ ...a, content: newArticleContent });
+    // Publish
+    await publishArticle({ ...article, content: newContent });
   }
 })();
