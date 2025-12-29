@@ -113,3 +113,11 @@ LLM-Ready Content Enhancement (Phase 3)<br>
     </tr>
   </tbody>
 </table>
+<br>
+<h2>🖥️ Live Project Links</h2> 
+<br><br>
+o Frontend (Live UI): <br>
+ <a href="https://beyound-chats-roan.vercel.app">👉 https://beyound-chats-roan.vercel.app</a> <br> 
+o Backend API: <br>
+ <a href="https://beyoundchats-backend.onrender.com">👉 https://beyoundchats-backend.onrender.com</a><br><br>
+ 
