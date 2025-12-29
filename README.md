@@ -45,26 +45,26 @@ o ✅ Built with frequent commits to reflect real-world development workflow<br>
 <br>
 <h2>🏗️ System Architecture</h2>
 <br>
-BeyondChats Blogs
-        │
+BeyondChats Blogs<br>
+        │ <br>
+        ▼ <br>
+Pagination Scraper (Oldest Articles)<br>
+        │<br>
         ▼
-Pagination Scraper (Oldest Articles)
-        │
-        ▼
-MongoDB (Article Store)
-        │
-        ▼
-CRUD APIs (Express.js)
-        │
-        ▼
-Automation Script (Node.js)
-        │
-        ▼
-Competitor Discovery (Authority Sites)
-        │
-        ▼
-Content Scraping & Cleaning
-        │
-        ▼
-LLM-Ready Content Enhancement (Phase 3)
+MongoDB (Article Store) <br>
+        │ <br>
+        ▼<br>
+CRUD APIs (Express.js) <br>
+        │<br>
+        ▼<br>
+Automation Script (Node.js)<br>
+        │<br>
+        ▼<br>
+Competitor Discovery (Authority Sites)<br>
+        │<br>
+        ▼<br>
+Content Scraping & Cleaning<br>
+        │<br>
+        ▼<br>
+LLM-Ready Content Enhancement (Phase 3)<br>
 
