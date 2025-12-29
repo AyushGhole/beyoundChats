@@ -26,3 +26,4 @@ o ✅ Built with frequent commits to reflect real-world development workflow<br>
 <span><img src="https://img.shields.io/badge/RESTFULL_API--eeff6e?style=flat-square" height="30px" width="120px" ></span> 
 <span><img src="https://img.shields.io/badge/-Vercel-009df2?style=flat-square" height="30px" width="70px" ></span>
 <span><img src="https://img.shields.io/badge/-RENDER-f23400?style=flat-square" height="30px" width="80px" ></span>
+<span><img src="https://img.shields.io/badge/-FRAMER_MOTION-ff6e6e?style=flat-square" height="30px" width="90px" ></span>
