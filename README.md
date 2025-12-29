@@ -46,42 +46,54 @@ o ✅ Built with frequent commits to reflect real-world development workflow<br>
 <br>
 <h2>🏗️ System Architecture</h2>
 <br>
-<p><strong>BeyondChats Blogs</strong></p>
 
-<p>│</p>
-<p>▼</p>
-
-<p><strong>Pagination Scraper</strong><br/>(Fetches Oldest Articles)</p>
-
-<p>│</p>
-<p>▼</p>
-
-<p><strong>MongoDB</strong><br/>(Article Store)</p>
-
-<p>│</p>
-<p>▼</p>
-
-<p><strong>CRUD APIs</strong><br/>(Express.js)</p>
-
-<p>│</p>
-<p>▼</p>
-
-<p><strong>Automation Script</strong><br/>(Node.js)</p>
-
-<p>│</p>
-<p>▼</p>
-
-<p><strong>Competitor Discovery</strong><br/>(Authority Sites)</p>
-
-<p>│</p>
-<p>▼</p>
-
-<p><strong>Content Scraping & Cleaning</strong></p>
-
-<p>│</p>
-<p>▼</p>
-
-<p><strong>LLM-Ready Content Enhancement</strong><br/>(Phase 3)</p>
+<table>
+  <tr>
+    <td align="center"><strong>BeyondChats Blogs</strong></td>
+  </tr>
+  <tr>
+    <td align="center">⬇️</td>
+  </tr>
+  <tr>
+    <td align="center"><strong>Pagination Scraper</strong><br/>(Oldest Articles)</td>
+  </tr>
+  <tr>
+    <td align="center">⬇️</td>
+  </tr>
+  <tr>
+    <td align="center"><strong>MongoDB</strong><br/>(Article Store)</td>
+  </tr>
+  <tr>
+    <td align="center">⬇️</td>
+  </tr>
+  <tr>
+    <td align="center"><strong>CRUD APIs</strong><br/>(Express.js)</td>
+  </tr>
+  <tr>
+    <td align="center">⬇️</td>
+  </tr>
+  <tr>
+    <td align="center"><strong>Automation Script</strong><br/>(Node.js)</td>
+  </tr>
+  <tr>
+    <td align="center">⬇️</td>
+  </tr>
+  <tr>
+    <td align="center"><strong>Competitor Discovery</strong><br/>(Authority Sites)</td>
+  </tr>
+  <tr>
+    <td align="center">⬇️</td>
+  </tr>
+  <tr>
+    <td align="center"><strong>Content Scraping & Cleaning</strong></td>
+  </tr>
+  <tr>
+    <td align="center">⬇️</td>
+  </tr>
+  <tr>
+    <td align="center"><strong>LLM-Ready Content Enhancement</strong><br/>(Phase 3)</td>
+  </tr>
+</table>
 
 <br><br>
 <h2>🔗 API Endpoints Overview</h2> 
