@@ -1,11 +1,16 @@
 import { Card, CardContent, Chip, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 
-export default function ArticleCard({ article }) {
+export default function ArticleCard({ article, onClick }) {
   return (
+    // <motion.div
+    //   whileHover={{ y: -8 }}
+    //   transition={{ type: "spring", stiffness: 300 }}>
     <motion.div
       whileHover={{ y: -8 }}
-      transition={{ type: "spring", stiffness: 300 }}>
+      transition={{ type: "spring", stiffness: 300 }}
+      onClick={onClick}
+      className="cursor-pointer">
       <Card
         className="h-full rounded-3xl"
         sx={{

@@ -178,3 +178,27 @@ exports.updateArticle = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+// CREATE article
+exports.createArticle = async (req, res) => {
+  try {
+    const { title, content, url } = req.body;
+
+    if (!title || !content) {
+      return res.status(400).json({ message: "Title & content required" });
+    }
+
+    const article = await beyondArticle.create({
+      title,
+      content,
+      url,
+      type: "original",
+      originalArticleId: null,
+      references: [],
+    });
+
+    res.status(201).json(article);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
