@@ -33,7 +33,7 @@ export default function AddArticleModal({
     try {
       const res = await axios.post(`${BASE_URL}/create`, form);
 
-      console.loh(res);
+      console.log(res);
 
       setSnack({
         open: true,
@@ -42,6 +42,11 @@ export default function AddArticleModal({
       });
 
       onClose();
+
+      setTimeout(() => {
+        onClose();
+        window.location.reload();
+      }, 1000);
     } catch (err) {
       setSnack({
         open: true,

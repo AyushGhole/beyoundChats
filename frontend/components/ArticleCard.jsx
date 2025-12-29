@@ -3,9 +3,6 @@ import { motion } from "framer-motion";
 
 export default function ArticleCard({ article, onClick }) {
   return (
-    // <motion.div
-    //   whileHover={{ y: -8 }}
-    //   transition={{ type: "spring", stiffness: 300 }}>
     <motion.div
       whileHover={{ y: -8 }}
       transition={{ type: "spring", stiffness: 300 }}
