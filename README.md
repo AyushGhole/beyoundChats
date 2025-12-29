@@ -13,3 +13,5 @@ o ✅ Clean, modern UI using MUI + Framer Motion<br>
 o ✅ Secure CORS-configured production deployment<br>
 o ✅ Deployed on Vercel (Frontend) & Render (Backend)<br>
 o ✅ Built with frequent commits to reflect real-world development workflow<br>
+<br>
+<h2>🧠 Tech Stack</h2> <br><br>
