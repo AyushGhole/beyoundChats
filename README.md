@@ -123,7 +123,7 @@ o Backend API: <br>
  <br>
  <h2>⚙️ Local Setup Instructions</h2> 
  1️⃣ Clone the Repository <br>
- &nbsp; &nbsp; o git clone <br>
+ &nbsp; &nbsp; o git clone : https://github.com/AyushGhole/beyoundChats.git <br>
 &nbsp; &nbsp;  o cd beyondChats <br> 
  2️⃣ Backend Setup <br>
  &nbsp; &nbsp; o cd backend <br>
@@ -133,7 +133,7 @@ o Backend API: <br>
  &nbsp; &nbsp; o cd frontend <br>
 &nbsp; &nbsp;  o npm install<br>
 &nbsp; &nbsp;  o npm run dev <br> 
-&nbsp; &nbsp:  o Frontend will run on: http://localhost:5173<br>
+&nbsp; &nbsp;  o Frontend will run on: http://localhost:5173<br>
 <br>
 <h4>🔐 CORS & Production Configuration</h4> 
 o Backend CORS is configured to allow only trusted origins: <br>
@@ -154,5 +154,7 @@ This Ensurs :  <br>
 <br>
 <h2>📸 Screenshots</h2> 
 <img src="frontend/public/view.png">
-
- 
+<br>
+ <h2>👨‍💻 Author</h2>
+<b>Ayush Ghole</b>  <br>
+<b>Full-Stack Developer | MERN</b><br>
