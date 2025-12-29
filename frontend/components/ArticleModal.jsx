@@ -25,7 +25,7 @@ export default function ArticleModal({ open, onClose, article, refresh }) {
   const [content, setContent] = useState("");
   const [snack, setSnack] = useState({ open: false, msg: "", type: "success" });
 
-  const BASE_URL = "http://localhost:5000/api";
+  const BASE_URL = "https://beyoundchats-backend.onrender.com/api";
 
   useEffect(() => {
     if (article) {
