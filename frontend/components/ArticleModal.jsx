@@ -39,7 +39,7 @@ export default function ArticleModal({ open, onClose, article, refresh }) {
 
   console.log(article);
 
-  /* 🔄 UPDATE */
+  /* UPDATE */
   const handleUpdate = async () => {
     try {
       await axios.put(`${BASE_URL}/update/${article._id}`, {
@@ -79,7 +79,7 @@ export default function ArticleModal({ open, onClose, article, refresh }) {
         type: "success",
       });
 
-      // ✅ 3️⃣ CLOSE MODAL AFTER A TICK
+      // CLOSE MODAL AFTER A TICK
 
       setTimeout(() => {
         onClose();
@@ -216,7 +216,7 @@ export default function ArticleModal({ open, onClose, article, refresh }) {
         </DialogContent>
       </Dialog>
 
-      {/* 🔔 SNACKBAR */}
+      {/* SNACKBAR */}
       <Snackbar
         open={snack.open}
         autoHideDuration={3000}

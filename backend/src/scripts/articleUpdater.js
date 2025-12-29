@@ -5,12 +5,14 @@ const puppeteer = require("puppeteer");
 const API_BASE = "http://localhost:5000/api/fetch/articles";
 const API_UPDATE = "http://localhost:5000/api/update";
 
+// ------------------ FETCH ARTICLES ------------------
 async function fetchArticles() {
   const res = await axios.get(API_BASE);
   console.log("Fetched articles:", res.data.count);
   return res.data.articles;
 }
 
+// ------------------ FETCH ARTICLES  ------------------
 (async () => {
   try {
     const articles = await fetchArticles();
@@ -22,6 +24,7 @@ async function fetchArticles() {
   }
 })();
 
+// ------------------ VALIDATOR ------------------
 function isValidArticleUrl(url) {
   const blockedKeywords = [
     "account",
@@ -45,6 +48,7 @@ function isValidArticleUrl(url) {
   );
 }
 
+// ------------------ AUTHORITY SITES ------------------
 const AUTHORITY_SITES = [
   "https://www.ibm.com",
   "https://www.healthit.gov",
@@ -53,6 +57,7 @@ const AUTHORITY_SITES = [
   "https://www.hbr.org",
 ];
 
+// ------------------ GOOGLE SEARCH ------------------
 async function googleSearch(query) {
   const results = [];
 
@@ -85,6 +90,7 @@ async function googleSearch(query) {
   return [...new Set(results)].filter(isValidArticleUrl).slice(0, 2);
 }
 
+// ------------------ TEST ------------------
 (async () => {
   const articles = await fetchArticles();
 
@@ -93,6 +99,7 @@ async function googleSearch(query) {
   console.log("Top competitors:", competitors);
 })();
 
+// ------------------ SCRAPE CONTENT ------------------
 async function scrapeCompetitorArticle(url) {
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
@@ -149,7 +156,7 @@ async function scrapeCompetitorArticle(url) {
   }
 }
 
-// Test
+// ------------------ TEST------------------
 (async () => {
   const url =
     "https://www.npr.org/sections/shots-health-news/2024/12/30/nx-s1-5239924/bird-flu-q-a-what-to-know-to-help-protect-yourself-and-your-pets";

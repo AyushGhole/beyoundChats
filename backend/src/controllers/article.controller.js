@@ -39,63 +39,63 @@ exports.scrapeAndStoreArticles = async (req, res) => {
     let savedCount = 0;
     const savedArticles = [];
 
-    console.log("📄 Total pagination pages found:", pages.length);
+    console.log("Total pagination pages found:", pages.length);
 
     for (const pageUrl of pages) {
       if (savedCount >= 5) break;
 
-      console.log("➡️ Visiting page:", pageUrl);
+      console.log("Visiting page:", pageUrl);
 
-      // 1️⃣ Fetch pagination page
+      // Fetch pagination page
       const { data } = await axios.get(pageUrl);
 
-      // 2️⃣ Extract ARTICLE links
+      // Extract ARTICLE links
       const articleLinks = getArticleLinksFromPage(data);
       console.log("🔗 Found article links:", articleLinks.length);
 
       for (const articleUrl of articleLinks) {
         if (savedCount >= 5) break;
 
-        console.log("📝 Processing article:", articleUrl);
+        console.log("Processing article:", articleUrl);
 
         const exists = await beyondArticle.findOne({ url: articleUrl });
         if (exists) {
-          console.log("⏭️ Already exists, skipping");
+          console.log("Already exists, skipping");
           continue;
         }
 
         try {
-          // 3️⃣ Scrape article
+          // Scrape article
           const articleData = await scrapeArticle(articleUrl);
 
-          // 🛑 Validation guard
+          // Validation guard
           if (
             !articleData.title ||
             articleData.title.length < 10 ||
             !articleData.content ||
             articleData.content.length < 50
           ) {
-            console.log("❌ Invalid article data, skipping");
+            console.log("Invalid article data, skipping");
             continue;
           }
 
-          console.log("💾 Saving article:", articleData.title);
+          console.log("Saving article:", articleData.title);
 
-          // 4️⃣ Save to MongoDB (SAVES IMMEDIATELY)
+          // Save to MongoDB (SAVES IMMEDIATELY)
           const article = await beyondArticle.create(articleData);
 
-          console.log("✅ Saved with ID:", article._id);
+          console.log("Saved with ID:", article._id);
 
           savedArticles.push(article);
           savedCount++;
         } catch (err) {
-          console.error("❌ Error scraping article:", articleUrl);
+          console.error("Error scraping article:", articleUrl);
           console.error(err.message);
         }
       }
     }
 
-    console.log("🎉 Total articles saved:", savedArticles.length);
+    console.log("Total articles saved:", savedArticles.length);
 
     res.json({
       message: "Articles scraped and stored successfully",
@@ -103,7 +103,7 @@ exports.scrapeAndStoreArticles = async (req, res) => {
       articles: savedArticles,
     });
   } catch (error) {
-    console.error("🔥 Fatal error:", error.message);
+    console.error(" Fatal error:", error.message);
     res.status(500).json({ error: error.message });
   }
 };

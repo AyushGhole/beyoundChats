@@ -27,6 +27,7 @@ export default function Articles() {
     setArticles((prev) => [newArticle, ...prev]);
   };
 
+  // Loading spinner
   if (loading) {
     return (
       <div className="flex justify-center items-center h-[60vh]">
@@ -73,16 +74,7 @@ export default function Articles() {
         ))}
       </div>
 
-      {/* Modal */}
-      {/* <ArticleModal
-        open={Boolean(selectedArticle)}
-        article={selectedArticle}
-        onClose={() => setSelectedArticle(null)}
-        sx={{
-          backdropFilter: "blur(6px)",
-          backgroundColor: "rgba(0,0,0,0.3)",
-        }}
-      /> */}
+      {/* View Article Modal Form */}
       <ArticleModal
         open={open}
         article={selectedArticle}
@@ -91,6 +83,7 @@ export default function Articles() {
         onDelete={(id) => console.log("Delete:", id)}
       />
 
+      {/* Create Article Modal Form */}
       <AddArticleModal
         open={openAdd}
         onClose={() => setOpenAdd(false)}
@@ -98,7 +91,7 @@ export default function Articles() {
         setSnack={setSnack}
       />
 
-      {/* 🔔 SNACKBAR */}
+      {/* SNACKBAR */}
       <Snackbar
         open={snack.open}
         autoHideDuration={3000}

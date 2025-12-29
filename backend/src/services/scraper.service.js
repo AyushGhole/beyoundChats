@@ -4,6 +4,7 @@ const cheerio = require("cheerio");
 
 const BASE_URL = "https://beyondchats.com";
 
+// ------------------ GET LAST PAGE URL ------------------
 async function getLastPageUrl() {
   const { data } = await axios.get(`${BASE_URL}/blogs/`);
   const $ = cheerio.load(data);
@@ -24,6 +25,7 @@ async function getLastPageUrl() {
   return pageLinks[pageLinks.length - 1];
 }
 
+// ------------------ GET ARTICLE LINKS FROM PAGE ------------------
 function getArticleLinksFromPage(html) {
   const $ = cheerio.load(html);
   const links = new Set();
@@ -45,6 +47,7 @@ function getArticleLinksFromPage(html) {
   return Array.from(links);
 }
 
+// ------------------ SCRAPE ARTICLE ------------------
 async function scrapeArticle(url) {
   const { data } = await axios.get(url);
   const $ = cheerio.load(data);
