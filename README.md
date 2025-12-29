@@ -44,6 +44,49 @@ o ✅ Built with frequent commits to reflect real-world development workflow<br>
 <span><img src="https://img.shields.io/badge/-Cheerio-f23400?style=flat-square" height="30px" width="80px" ></span>
 <span><img src="https://img.shields.io/badge/Mongoose-e164e3?style=flat-square&logo=tailwindcss&logoColor=white" height="30px" width="120px" ></span>
 <br>
+<h2>🧱 FOLDER STRUCTURE </h2> <br>
+
+ backend/<br>
+ ├─ src/<br>
+ │   ├─ config/<br>
+ │   │   └─ db.js <br>
+ │   ├─ contollers/ <br>
+ │   │   └─ article.controller.js <br>
+ │   ├─ models/ <br>
+ │   │   └─ Article.js<br>
+ │   ├─ routes/ <br>
+ │   │   └─ article.route.js <br>
+ │   ├─ scripts/ <br>
+ │   │   ├─ testgemini.js <br>
+ │   │   └─ articleUpdater.js <br>
+ │   ├─ services/ <br>
+ │   │   └─ scrapper.service.js <br>
+ │   └─ app.js <br>
+ ├─ env  <br>
+ ├─ package-lock.json <br>
+ └─ package.json <br>
+
+<br>
+frontend/<br>
+ ├─ api/<br>
+ │   ├─ articles.js<br>
+ ├─ components/<br>
+ │   ├─ AddArticleButton.jsx<br>
+ │   ├─ AddArticleModal.jsx<br> 
+ │   ├─ ArticleCard.jsx<br>
+ │   ├─ ArticleList.jsx<br>
+ │   ├─ ArticleModal.jsx<br>
+ │   └─ Navbar.jsx<br>
+ ├─ src/<br>
+ │   ├─ assets/<br>
+ │   ├─ App.css<br>
+ │   ├─ App.jsx<br>
+ │   └─ main.jsx<br>
+ ├─ index.html<br> 
+ ├─ package.json<br>
+ ├─ package-lock.json<br>
+ └─ vite.config.js<br>
+<br>
 <h2>🏗️ System Architecture</h2>
 <br>
 <div align="center">
