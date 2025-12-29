@@ -69,3 +69,47 @@ Content Scraping & Cleaning<br>
     &nbsp; &nbsp;     ▼<br>
 LLM-Ready Content Enhancement (Phase 3)<br>
 
+<br><br>
+<h2>🔗 API Endpoints Overview</h2> 
+<br>
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Endpoint</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>POST</td>
+      <td>/api/scrape</td>
+      <td>Scrapes the oldest blog articles from BeyondChats and stores them in the database</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td>/api/fetch/articles</td>
+      <td>Fetches all stored articles from the database</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td>/api/fetch/:id</td>
+      <td>Fetches a single article by its unique ID</td>
+    </tr>
+    <tr>
+      <td>POST</td>
+      <td>/api/create</td>
+      <td>Creates a new article manually via API or admin panel</td>
+    </tr>
+    <tr>
+      <td>PUT</td>
+      <td>/api/update/:id</td>
+      <td>Updates an existing article using its ID</td>
+    </tr>
+    <tr>
+      <td>DELETE</td>
+      <td>/api/delete/:id</td>
+      <td>Deletes a specific article by its ID</td>
+    </tr>
+  </tbody>
+</table>
