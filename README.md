@@ -46,28 +46,42 @@ o ✅ Built with frequent commits to reflect real-world development workflow<br>
 <br>
 <h2>🏗️ System Architecture</h2>
 <br>
-BeyondChats Blogs<br>
-  &nbsp;  &nbsp;      │ <br>
-   &nbsp; &nbsp;      ▼ <br>
-Pagination Scraper (Oldest Articles)<br>
-  &nbsp; &nbsp;        │<br>
-      &nbsp; &nbsp;   ▼ <br>
-MongoDB (Article Store) <br>
-   &nbsp; &nbsp;      │ <br>
-  &nbsp; &nbsp;       ▼<br>
-CRUD APIs (Express.js) <br>
-     &nbsp; &nbsp;    │<br>
-      &nbsp; &nbsp;   ▼<br>
-Automation Script (Node.js)<br>
-    &nbsp; &nbsp;     │<br>
-    &nbsp; &nbsp;     ▼<br>
-Competitor Discovery (Authority Sites)<br>
-    &nbsp; &nbsp;     │<br>
-    &nbsp; &nbsp;     ▼<br>
-Content Scraping & Cleaning<br>
-   &nbsp; &nbsp;      │<br>
-    &nbsp; &nbsp;     ▼<br>
-LLM-Ready Content Enhancement (Phase 3)<br>
+<p><strong>BeyondChats Blogs</strong></p>
+
+<p>│</p>
+<p>▼</p>
+
+<p><strong>Pagination Scraper</strong><br/>(Fetches Oldest Articles)</p>
+
+<p>│</p>
+<p>▼</p>
+
+<p><strong>MongoDB</strong><br/>(Article Store)</p>
+
+<p>│</p>
+<p>▼</p>
+
+<p><strong>CRUD APIs</strong><br/>(Express.js)</p>
+
+<p>│</p>
+<p>▼</p>
+
+<p><strong>Automation Script</strong><br/>(Node.js)</p>
+
+<p>│</p>
+<p>▼</p>
+
+<p><strong>Competitor Discovery</strong><br/>(Authority Sites)</p>
+
+<p>│</p>
+<p>▼</p>
+
+<p><strong>Content Scraping & Cleaning</strong></p>
+
+<p>│</p>
+<p>▼</p>
+
+<p><strong>LLM-Ready Content Enhancement</strong><br/>(Phase 3)</p>
 
 <br><br>
 <h2>🔗 API Endpoints Overview</h2> 
