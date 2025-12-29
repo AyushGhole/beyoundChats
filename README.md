@@ -46,25 +46,25 @@ o ✅ Built with frequent commits to reflect real-world development workflow<br>
 <h2>🏗️ System Architecture</h2>
 <br>
 BeyondChats Blogs<br>
-        │ <br>
-        ▼ <br>
+  &nbsp;  &nbsp;      │ <br>
+   &nbsp; &nbsp;      ▼ <br>
 Pagination Scraper (Oldest Articles)<br>
-        │<br>
-        ▼
+  &nbsp; &nbsp;        │<br>
+      &nbsp; &nbsp;   ▼
 MongoDB (Article Store) <br>
-        │ <br>
-        ▼<br>
+   &nbsp; &nbsp;      │ <br>
+  &nbsp; &nbsp;       ▼<br>
 CRUD APIs (Express.js) <br>
-        │<br>
-        ▼<br>
+     &nbsp; &nbsp;    │<br>
+      &nbsp; &nbsp;   ▼<br>
 Automation Script (Node.js)<br>
-        │<br>
-        ▼<br>
+    &nbsp; &nbsp;     │<br>
+    &nbsp; &nbsp;     ▼<br>
 Competitor Discovery (Authority Sites)<br>
-        │<br>
-        ▼<br>
+    &nbsp; &nbsp;     │<br>
+    &nbsp; &nbsp;     ▼<br>
 Content Scraping & Cleaning<br>
-        │<br>
-        ▼<br>
+   &nbsp; &nbsp;      │<br>
+    &nbsp; &nbsp;     ▼<br>
 LLM-Ready Content Enhancement (Phase 3)<br>
 
