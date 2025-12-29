@@ -25,4 +25,4 @@ o ✅ Built with frequent commits to reflect real-world development workflow<br>
 <span><img src="https://img.shields.io/badge/Tailwind_CSS-e164e3?style=flat-square&logo=tailwindcss&logoColor=white" height="30px" width="120px" ></span>
 <span><img src="https://img.shields.io/badge/RESTFULL_API--eeff6e?style=flat-square" height="30px" width="120px" ></span> 
 <span><img src="https://img.shields.io/badge/-Vercel-009df2?style=flat-square" height="30px" width="70px" ></span>
-<span><img src="https://img.shields.io/badge/-JEST-yellow?style=flat-square" height="30px" width="70px" ></span>
+<span><img src="https://img.shields.io/badge/-RENDER-f23400?style=flat-square" height="30px" width="80px" ></span>
