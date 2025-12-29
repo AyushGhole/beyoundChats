@@ -42,3 +42,29 @@ o ✅ Built with frequent commits to reflect real-world development workflow<br>
 <span><img src="https://camo.githubusercontent.com/7e282220b8ec0dd29cf99be1c0f5e82d74a42bc84ed834ee6afd86b4bad3bfee/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6769746875622d2532333132313031312e7376673f7374796c653d666f722d7468652d6261646765266c6f676f3d676974687562266c6f676f436f6c6f723d7768697465" ></span>
 <span><img src="https://img.shields.io/badge/-Axios-009df2?style=flat-square" height="30px" width="70px" ></span> 
 <span><img src="https://img.shields.io/badge/-Cheerio-f23400?style=flat-square" height="30px" width="80px" ></span>
+<br>
+<h2>🏗️ System Architecture</h2>
+<br>
+BeyondChats Blogs
+        │
+        ▼
+Pagination Scraper (Oldest Articles)
+        │
+        ▼
+MongoDB (Article Store)
+        │
+        ▼
+CRUD APIs (Express.js)
+        │
+        ▼
+Automation Script (Node.js)
+        │
+        ▼
+Competitor Discovery (Authority Sites)
+        │
+        ▼
+Content Scraping & Cleaning
+        │
+        ▼
+LLM-Ready Content Enhancement (Phase 3)
+
