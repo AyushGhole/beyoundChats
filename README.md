@@ -115,9 +115,44 @@ LLM-Ready Content Enhancement (Phase 3)<br>
 </table>
 <br>
 <h2>🖥️ Live Project Links</h2> 
-<br><br>
+<br>
 o Frontend (Live UI): <br>
  <a href="https://beyound-chats-roan.vercel.app">👉 https://beyound-chats-roan.vercel.app</a> <br> 
 o Backend API: <br>
  <a href="https://beyoundchats-backend.onrender.com">👉 https://beyoundchats-backend.onrender.com</a><br><br>
+ <br>
+ <h2>⚙️ Local Setup Instructions</h2> 
+ 1️⃣ Clone the Repository <br>
+ &nbsp; &nbsp; o git clone <br>
+&nbsp; &nbsp;  o cd beyondChats <br> 
+ 2️⃣ Backend Setup <br>
+ &nbsp; &nbsp; o cd backend <br>
+ &nbsp; &nbsp; o node/nodemon src/app.js<br>
+ &nbsp; &nbsp; o Create a .env file <br>
+ 3️⃣ Frontend Setup<br>
+ &nbsp; &nbsp; o cd frontend <br>
+&nbsp; &nbsp;  o npm install<br>
+&nbsp; &nbsp;  o npm run dev <br> 
+&nbsp; &nbsp:  o Frontend will run on: http://localhost:5173<br>
+<br>
+<h4>🔐 CORS & Production Configuration</h4> 
+o Backend CORS is configured to allow only trusted origins: <br>
+&nbsp; &nbsp; o Vercel production frontend<br>
+&nbsp; &nbsp; o Localhost (development)<br>
+This Ensurs :  <br>
+&nbsp; &nbsp; o Secure cross-origin requests<br>
+&nbsp; &nbsp; o Production-ready deployment practices <br> 
+<br>
+<h2>🎨 UI/UX Enhancements</h2> 
+<ul>
+ <li>Material UI for consistent design</li>
+ <li>Framer Motion for smooth animations</li>
+ <li>Loading states & disabled actions during API calls</li>
+ <li>Clean modal-based article editing experience</li>
+ <li>Responsive layout for better usability</li>
+</ul>
+<br>
+<h2>📸 Screenshots</h2> 
+<img src="frontend/public/view.png">
+
  
