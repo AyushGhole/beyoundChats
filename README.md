@@ -46,7 +46,7 @@ o ✅ Built with frequent commits to reflect real-world development workflow<br>
 <br>
 <h2>🏗️ System Architecture</h2>
 <br>
-
+<div align="center">
 <table>
   <tr>
     <td align="center"><strong>BeyondChats Blogs</strong></td>
@@ -91,10 +91,10 @@ o ✅ Built with frequent commits to reflect real-world development workflow<br>
     <td align="center">⬇️</td>
   </tr>
   <tr>
-    <td align="center"><strong>LLM-Ready Content Enhancement</strong><br/>(Phase 3)</td>
+    <td align="center"><strong>LLM-Ready Content Enhancement</strong><br/></td>
   </tr>
 </table>
-
+</div>
 <br><br>
 <h2>🔗 API Endpoints Overview</h2> 
 <br>
